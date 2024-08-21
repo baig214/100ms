@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@100mslive/hms-video": "^0.9.28",
+    "@100mslive/hms-video-store": "^0.12.18"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
