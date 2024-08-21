@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>iframes grid</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+        }
+
+        .iframe-container {
+            flex: 1 1 50%;
+            height: 50%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #form {
+            width: 100%;
+            padding: 10px;
+            background-color: #f0f0f0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        #iframeGrid {
+            margin-top: 70px;
+            width: 100%;
+            height: calc(100% - 70px);
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form">
+        <label for="authToken">Auth Token: </label>
+        <input type="text" id="authToken" placeholder="app token" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Container for the iFrames -->
+    <div id="iframeGrid"></div>
+
+    <script>
+        // Function to create and update iframe sources
+        document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            const token = document.getElementById('authToken').value; // Get the input URL
+            const iframeGrid = document.getElementById('iframeGrid'); // Get the iframe grid container
+
+            iframeGrid.innerHTML = ''; // Clear any existing iframes
+
+            ['video', 'screen'].forEach(type => {
+                const iframeContainer = document.createElement('div');
+                iframeContainer.className = 'iframe-container';
+
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://100ms-piu5nzzv8-mohammeds-projects-f22a3fdc.vercel.app/?token=${token}&type=${type}`;
+                iframe.allow = 'microphone;camera;display-capture;';
+                iframe.allowFullscreen = true;
+
+                iframeContainer.appendChild(iframe);
+                iframeGrid.appendChild(iframeContainer);
+            });
+        });
+    </script>
+</body>
+
+</html>
